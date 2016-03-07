@@ -1,15 +1,12 @@
-import {Directive, ElementRef, Input} from 'angular2/core';
+import {Directive, ElementRef, Input, OnInit} from 'angular2/core';
 
 @Directive({
-  selector: '[myIcon]'
+  selector: '[faIcon]'
 })
-export class IconDirective {
-  @Input('myIcon') iconName: string;
+export class IconDirective implements OnInit {
+  @Input('faIcon') iconName: string;
 
-  constructor(private el: ElementRef) {
-    console.log('this.iconName', this.iconName);
-    this.getClassName();
-  }
+  constructor(private el: ElementRef) { }
 
   // define some aliases for common use cases
   // otherwise, use the icon name passed in
@@ -18,7 +15,7 @@ export class IconDirective {
     back: 'fa fa-arrow-left',
     cancel: 'fa fa-times',
     close: 'fa fa-times',
-    delete: 'fa fa-trash-o',
+    trash: 'fa fa-trash-o',
     edit: 'fa fa-pencil-square-o',
     forward: 'fa fa-arrow-right',
     help: 'fa fa-life-ring',
@@ -31,15 +28,11 @@ export class IconDirective {
     warning: 'fa fa-exclamation-triangle',
   };
 
-  private _faClassName = this._aliases[this.iconName];
+  private setClassName() {
+    this.el.nativeElement.className = this._aliases[this.iconName] || `fa fa-${this.iconName}`;
+  }
 
-  private getClassName() {
-    console.log('this.iconName', this.iconName);
-    console.log('this._faClassName', this._faClassName);
-    if (!this._faClassName) {
-      this._faClassName = `fa fa-${this.iconName}`;
-    }
-
-    this.el.nativeElement.className = this._faClassName;
+  ngOnInit() {
+    this.setClassName()
   }
 }

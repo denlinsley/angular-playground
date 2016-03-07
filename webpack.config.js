@@ -26,8 +26,9 @@ module.exports = {
 	module: {
 		loaders: [
 			{ test: /\.ts$/, loader: 'ts-loader' },
+			{ test: /\.html$/, loader: 'raw-loader' }
 		],
-		noParse: [ path.join(__dirname, 'node_modules', 'angular2', 'bundles') ]
+		noParse: [path.join(__dirname, 'node_modules', 'angular2', 'bundles')]
 	},
 
 	devServer: {

@@ -30,7 +30,6 @@ export class HighlightDirective {
   }
 
   private _highlight(color: string) {
-    console.log('this.highlightColor', this.highlightColor);
     this.el.nativeElement.style.backgroundColor = color;
   }
 }

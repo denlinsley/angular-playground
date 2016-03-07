@@ -2,7 +2,7 @@ import {Component, Input} from 'angular2/core';
 
 
 @Component({
-  selector: 'my-icon',
+  selector: 'fa-icon',
   template: '<i [class]="getClassName()"></i>'
 })
 export class IconComponent {
